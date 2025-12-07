@@ -1,10 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ActionButton } from "@/components/ui/action-button";
 import { Input } from "@/components/ui/input";
 import { Search, ScanLine, FileSearch } from "lucide-react";
 
 export function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    } else {
+      navigate("/search");
+    }
+  };
 
   return (
     <section className="relative overflow-hidden py-20 md:py-32">
@@ -20,7 +31,10 @@ export function HeroSection() {
           <p className="mt-6 text-pretty text-lg text-muted-foreground md:text-xl">
             AI-powered food transparency for India
           </p>
-          <div className="mt-10 flex items-center gap-2 rounded-full border border-border bg-card p-2 shadow-lg md:mx-auto md:max-w-xl">
+          <form
+            onSubmit={handleSearch}
+            className="mt-10 flex items-center gap-2 rounded-full border border-border bg-card p-2 shadow-lg md:mx-auto md:max-w-xl"
+          >
             <Search className="ml-3 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
@@ -29,15 +43,20 @@ export function HeroSection() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
             />
-            <ActionButton variant="primary" className="px-4 py-2 text-sm">
+            <ActionButton
+              variant="primary"
+              className="px-4 py-2 text-sm"
+              type="submit"
+            >
               Search
             </ActionButton>
-          </div>
+          </form>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <ActionButton
               variant="primary"
               icon={<ScanLine className="h-5 w-5" />}
               className="w-full sm:w-auto"
+              onClick={() => navigate("/search")}
             >
               Scan Product
             </ActionButton>
@@ -45,6 +64,7 @@ export function HeroSection() {
               variant="outline"
               icon={<FileSearch className="h-5 w-5" />}
               className="w-full sm:w-auto"
+              onClick={() => navigate("/analyze")}
             >
               Analyze Advertisement
             </ActionButton>

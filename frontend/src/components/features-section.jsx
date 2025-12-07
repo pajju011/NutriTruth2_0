@@ -1,5 +1,5 @@
-import { FeatureCard } from "@/components/feature-card";
-import { ShieldAlert, CheckCircle, FlaskConical } from "lucide-react";
+import { FeatureCard } from "@/components/feature-card"
+import { ShieldAlert, CheckCircle, FlaskConical } from "lucide-react"
 
 export function FeaturesSection() {
   const features = [

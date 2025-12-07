@@ -1,16 +1,21 @@
-import { Header } from "@/components/header";
-import { HeroSection } from "@/components/hero-section";
-import { FeaturesSection } from "@/components/features-section";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "@/pages/HomePage";
+import { SearchPage } from "@/pages/SearchPage";
+import { ProductPage } from "@/pages/ProductPage";
+import { AnalyzePage } from "@/pages/AnalyzePage";
+import { DashboardPage } from "@/pages/DashboardPage";
 
 function App() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/analyze" element={<AnalyzePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
