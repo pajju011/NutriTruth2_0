@@ -8,7 +8,7 @@ app = Flask(__name__)
 CLAIM_PATTERNS = {
     r'\b100%\s*natural\b': {
         'claim': '100% Natural',
-        'check': lambda text: any(word in text.lower() for word in ['artificial', 'preservative', 'flavor']),
+        'check': lambda text: any(word in text.lower() for word in ['artificial', 'preservative', 'flavor']),    
         'issue': 'Product contains artificial ingredients despite "natural" claim',
         'severity': 'high'
     },
