@@ -14,7 +14,7 @@ CLAIM_PATTERNS = {
     },
     r'\bsugar[\s-]*free\b': {
         'claim': 'Sugar Free',
-        'check': lambda text: any(word in text.lower() for word in ['sugar', 'maltodextrin', 'dextrose', 'fructose', 'sucrose']),
+        'check': lambda text: any(word in text.lower() for word in ['sugar', 'maltodextrin', 'dextrose', 'fructose', 'sucrose']),        
         'issue': 'Contains sugar or sugar substitutes that affect blood sugar',
         'severity': 'high'
     },
@@ -26,7 +26,7 @@ CLAIM_PATTERNS = {
     },
     r'\bhigh[\s-]*protein\b': {
         'claim': 'High Protein',
-        'check': lambda text: check_nutrition_value(text, 'protein', 10, less_than=True),
+        'check': lambda text: check_nutrition_value(text, 'protein', 10, less_than=True),                      
         'issue': 'Protein content may not justify "high protein" claim',
         'severity': 'medium'
     },
